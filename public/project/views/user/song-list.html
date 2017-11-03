@@ -1,0 +1,16 @@
+<div class="container-fluid" style="padding-top: 20px; padding-bottom: 20px">
+    <!-- BEGIN SIDEBAR -->
+    <div data-ng-include="'views/home/sidebar.html'"></div>
+    <!-- END SIDEBAR -->
+
+    <div class="col-sm-10">
+        <ul class="list-group">
+            <li ng-repeat="song in model.songs" class="list-group-item">
+                <a href="#/user/{{song.author}}/song/{{song._id}}">
+                    {{song.songName}}</a>
+                <span ng-click="model.deleteSong(song._id)"
+                      class="glyphicon glyphicon-trash pull-right"></span>
+            </li>
+        </ul>
+    </div>
+</div>

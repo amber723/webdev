@@ -1,0 +1,31 @@
+<div ng-cloak="" class="sliderdemoVertical">
+    <md-content layout="row" layout-padding="" style="height: 400px">
+
+        <md-slider-container ng-repeat="(i, value) in model.sliders track by $index">
+            <md-slider md-vertical=""  flex="" min="0" max="88"
+                       ng-click="model.getAudio(value).play()"
+                       ng-model="model.sliders[i]" aria-label="red" id="red-slider">
+            </md-slider>
+            <md-input-container>
+                <input flex="" type="number" ng-model="model.sliders[i]"
+                       ng-mouseup="model.getAudio(value).play()"
+                       aria-label="red" aria-controls="red-slider">
+            </md-input-container>
+        </md-slider-container>
+
+    </md-content>
+</div>
+
+<button class="btn btn-outline-info" style="margin-left: 15px"
+        ng-click="model.playAllnotes(model.sliders)"> Play </button>
+<button class="btn btn-outline-success " style="margin-left: 15px"
+        ng-click="model.updatePiece()"> Save </button>
+<a class="btn btn-outline-warning" href="#/user/{{model.userId}}/song/{{model.songId}}"
+        style="margin-left: 15px"> Cancel </a>
+<button class="btn btn-outline-danger" style="margin-left: 15px"
+        ng-click="model.deletePiece()"> Delete </button>
+
+<button class="btn btn-warning" style="margin-left: 15px"
+        ng-click="model.playSong()">Play</button>
+
+

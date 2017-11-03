@@ -1,0 +1,25 @@
+<div class="row" style="padding-top: 20px">
+    <div class="col-sm-2"></div>
+    <div class="col-sm-8">
+        <div class="input-group">
+            <input type="text" class="form-control" placeholder="Search for..."
+                   style="height: 38px;"
+                   ng-model="songName">
+            <span class="input-group-btn">
+                <button class="btn btn-outline-success" type="button"
+                        ng-click="model.searchSongs(songName)">Go!</button>
+            </span>
+        </div>
+    </div>
+</div>
+<div class="col-sm-2"></div>
+</div>
+
+<div class="container" style="padding-top: 20px">
+    <ul class="list-group">
+        <div ng-repeat="song in model.songs">
+            <iframe id="sc-widget" ng-src="{{model.getSafeUrl(song.permalink_url)}}"
+                    width="100%" height="165" scrolling="no" frameborder="no"></iframe>
+        </div>
+    </ul>
+</div>

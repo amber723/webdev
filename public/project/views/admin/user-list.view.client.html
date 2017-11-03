@@ -1,0 +1,57 @@
+<!--<div class="container-fluid">-->
+    <!--<div class="navbar-header">-->
+        <!--<p class="navbar-text pull-left">-->
+            <!--<a href="#/{{model.userId}}" class="navbar-link">-->
+                <!--<span class="glyphicon glyphicon-chevron-left"></span>-->
+            <!--</a>-->
+        <!--</p>-->
+        <!--<a class="navbar-brand" href="#"> Admin </a>-->
+    <!--</div>-->
+<!--</div>-->
+
+
+<div class="row">
+    <div class="col-sm-4" style="margin-top: 10px;">
+        <div class="col-sm-12">
+            <ul class="list-group">
+                <li ng-repeat="user in model.users"
+                    class="list-group-item">
+                    <a href="#/admin/{{user._id}}">
+                        {{user.username}}</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="col-sm-8 hidden-xs">
+        <div ng-show="model.success" class="alert alert-success">
+            {{model.success}}
+        </div>
+
+        <div ng-show="model.error" class="alert alert-danger">
+            {{model.error}}
+        </div>
+
+        <form>
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input ng-model="model.user.username" type="text" class="form-control"
+                       id="username" readonly>
+            </div>
+            <div class="form-group">
+                <label for="email">Email address</label>
+                <input ng-model="model.user.email" type="email" class="form-control"
+                       id="email" readonly>
+            </div>
+            <input type="checkbox" name="entitleAdmin" ng-model="model.user.role"
+                   ng-true-value="'ADMIN'" ng-false-value="'USER'"> Administrator <br><br>
+        </form>
+
+        <button ng-click="model.updateUser()" class="btn btn-success btn-block">Save Changes</button>
+
+        <button ng-click="model.deleteUser()" class="btn btn-danger btn-block">Delete User</button>
+
+    </div>
+</div>
+
+

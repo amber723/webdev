@@ -1,0 +1,7 @@
+{
+  "name": "shu-xin-webdev-fall2016",
+  "description": "A personal home page",
+  "repository": "https://github.com/amber723/shu-xin-webdev",
+  "keywords": ["node", "express", "angular", "MEAN", "mongodb", "REST", "API"],
+  "addons": ["mongolab"]
+}

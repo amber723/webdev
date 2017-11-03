@@ -1,0 +1,19 @@
+# web-dev-template
+
+1. git clone https://github.com/jannunzi/web-dev-template.git
+1. cd web-dev-template
+1. npm install
+1. mongod
+1. node server.js
+1. browse to localhost:3000
+
+# mean-contactlist
+
+Contact List is a RESTful API server and web application built with the MEAN stack. It is a simple example that aims to concisely demonstrate basic MEAN and REST architecture. You can find the full tutorial here: https://devcenter.heroku.com/articles/mean-apps-restful-api.
+
+You can deploy a live copy of this application to Heroku with the button below.
+
+[![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy?template=https://github.com/chrisckchang/mean-contactlist)
+
+
+transform : rotate(90deg);

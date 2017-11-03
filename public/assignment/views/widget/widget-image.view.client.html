@@ -1,0 +1,90 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <p class="navbar-text pull-left">
+                <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget"
+                   class="navbar-link">
+                    <span class="glyphicon glyphicon-chevron-left"></span>
+                </a>
+            </p>
+            <a class="navbar-brand">Edit Image Widget</a>
+            <p class="navbar-text pull-right">
+                <a ng-click="model.updateWidget()" class="navbar-link">
+                    <span class="glyphicon glyphicon-ok"></span>
+                </a>
+            </p>
+        </div>
+    </div>
+</nav>
+
+
+<div class="container">
+    <div ng-if="model.error"
+         class="alert alert-danger">
+        {{model.error}}
+    </div>
+    <form name="myForm" novalidate>
+        <div class="form-group">
+            <label for="widget-name">Name</label>
+            <input ng-model="model.widget.name"
+                   name="widgetname" required
+                   type="text" class="form-control"
+                   id="widget-name" placeholder="Name">
+            <span ng-show="myForm.widgetname.$invalid">
+                Widget Name Required
+            </span>
+        </div>
+        <div class="form-group">
+            <label for="widget-text">Text</label>
+            <input ng-model="model.widget.text"
+                   type="text" class="form-control"
+                   id="widget-text" placeholder="Text">
+        </div>
+        <div class="form-group">
+            <label for="widget-url">URL</label>
+            <input ng-model="model.widget.url"
+                   type="url" class="form-control" id="widget-url"
+                   placeholder="https://www.youtube.com/">
+        </div>
+        <div class="form-group">
+            <label for="widget-width">Width</label>
+            <input ng-model="model.widget.width"
+                   type="text" class="form-control" id="widget-width"
+                   placeholder="100%">
+        </div>
+    </form>
+
+    <form action="/api/upload" method="post" enctype="multipart/form-data">
+        <label for="widget-upload">Upload</label>
+        <input  name="myFile"   type="file" class="form-control" id="widget-upload"/>
+        <input  name="width"    value="{{model.widget.width}}" style="display: none"/>
+        <input  name="widgetId" value="{{model.widget._id}}"   style="display: none"/>
+
+        <input  name="uid"    value="{{model.userId}}"    style="display: none"/>
+        <input  name="wid"    value="{{model.websiteId}}" style="display: none"/>
+        <input  name="pid"    value="{{model.pageId}}"    style="display: none"/>
+
+        <button type="submit"   class="btn btn-block btn-primary">Upload Image</button>
+    </form>
+
+    <a class="btn btn-danger btn-block"
+       ng-click="model.deleteWidget()">Delete</a>
+</div>
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container">
+        <div class="row navbar-text">
+            <div class="col-xs-3 text-center">
+            </div>
+            <div class="col-xs-3 text-center">
+            </div>
+            <div class="col-xs-3 text-center">
+            </div>
+            <div class="col-xs-3 text-center">
+                <a href="#/user/{{model.userId}}">
+                    <span class="glyphicon glyphicon-user"></span>
+                </a>
+            </div>
+        </div>
+    </div>
+</nav>

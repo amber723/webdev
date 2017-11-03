@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="WebAppMaker">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="js/jquery.js"></script>
+    <script src="js/jquery-ui.js"></script>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <!-- Angular lib -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.6/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.6/angular-route.min.js"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <link href="css/jquery-ui.css" rel="stylesheet"/>
+    <link href="css/style.css" rel="stylesheet"/>
+    <link href="css/textAngular.css" rel="stylesheet"/>
+    <script src="js/textAngular-rangy.min.js"></script>
+    <script src="js/textAngular-sanitize.min.js"></script>
+    <script src="js/textAngular.min.js"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
+
+    <script src="js/app.js"></script>
+    <script src="js/config.js"></script>
+
+    <!--Client Side Controllers-->
+    <script src="views/user/login.controller.client.js"></script>
+    <script src="views/user/register.controller.client.js"></script>
+    <script src="views/user/profile.controller.client.js"></script>
+    <script src="views/website/website-list.controller.client.js"></script>
+    <script src="views/website/new-website.controller.client.js"></script>
+    <script src="views/website/edit-website.controller.client.js"></script>
+    <script src="views/page/new-page.controller.client.js"></script>
+    <script src="views/page/edit-page.controller.client.js"></script>
+    <script src="views/page/page-list.controller.client.js"></script>
+    <script src="views/widget/widget-list.controller.client.js"></script>
+    <script src="views/widget/new-widget.controller.client.js"></script>
+    <script src="views/widget/edit-widget.controller.client.js"></script>
+    <script src="views/widget/widget-flickr-search.controller.client.js"></script>
+    <script src="directives/wamDir.js"></script>
+
+    <!--Services-->
+    <script src="services/user.service.client.js"></script>
+    <script src="services/website.service.client.js"></script>
+    <script src="services/page.service.client.js"></script>
+    <script src="services/widget.service.client.js"></script>
+    <script src="services/flicker.service.client.js"></script>
+
+    <title>Assignment Home Page</title>
+</head>
+
+<body>
+
+<div ng-view></div>
+</body>
+
+</html>

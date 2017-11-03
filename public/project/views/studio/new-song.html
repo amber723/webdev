@@ -1,0 +1,67 @@
+<div id="studiobody" class="container-fluid">
+<div class=" col-sm-4"></div>
+<div class="container col-sm-4" style="background-color: #e7f4e3; top: 80px; border-radius: 15px; padding: 15px">
+    <div ng-show="model.error" class="alert alert-danger">
+        {{model.error}}
+    </div>
+    <h5>Name</h5>
+    <input ng-model="model.song.songName" type="text" required style="margin-left: 0px;"
+           class="form-control" placeholder="song name"/>
+
+    <h5>Tonality</h5>
+    <div class="btn-group">
+        <label class="btn btn-outline-success"
+               ng-model="model.song.mode"
+               uib-btn-radio="'Major'">Major Keys</label>
+        <label class="btn btn-outline-success"
+               ng-model="model.song.mode"
+               uib-btn-radio="'None'">None</label>
+        <label class="btn btn-outline-success"
+               ng-model="model.song.mode"
+               uib-btn-radio="'Minor'">Minor Keys</label>
+    </div>
+
+    <div class="btn-group" uib-dropdown >
+        <button id="split-button" type="button"
+                class="btn btn-outline-warning">{{model.song.key}} Key</button>
+        <button type="button" class="btn btn-outline-warning" uib-dropdown-toggle>
+        </button>
+        <ul class="dropdown-menu" uib-dropdown-menu role="menu"
+            aria-labelledby="split-button" >
+            <li ng-repeat="key in model.keys">
+                <a href="#" ng-click="$event.preventDefault(); model.song.key = key">{{ key }}</a>
+            </li>
+            <li class="divider"></li>
+            <li role="menuitem">
+                <a href="#" ng-click="$event.preventDefault(); model.song.key = 'None'">None</a>
+            </li>
+        </ul>
+    </div>
+
+    <h5>Pitch</h5>
+    <div class="btn-group">
+        <label class="btn btn-outline-info"
+               ng-model="model.song.accidental"
+               uib-btn-radio="'Sharp'">Sharp #</label>
+        <label class="btn btn-outline-info"
+               ng-model="model.song.accidental"
+               uib-btn-radio="'Natural'">Natural  Notes</label>
+        <label class="btn btn-outline-info"
+               ng-model="model.song.accidental"
+               uib-btn-radio="'Flat'">Flat b</label>
+    </div>
+
+    <h5>Tempo</h5>
+    <div class="sliderdemoBasicUsage" style="margin-bottom: 10px">
+        <md-content style=" padding-top: 20px; padding-left: 0px" >
+            <div layout="">
+                <md-slider flex="" md-discrete="" ng-model="model.song.tempo"
+                           step="1" min="40" max="200" aria-label="tempo" >
+                </md-slider>
+            </div>
+        </md-content>
+    </div>
+    <button class="btn btn-success btn-block" type="button"
+            ng-click="model.createSong()">Create</button>
+</div>
+    </div>

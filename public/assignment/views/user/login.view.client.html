@@ -1,0 +1,48 @@
+<div class="container">
+        <div ng-if="model.error"
+             class="alert alert-danger">
+                {{model.error}}
+        </div>
+        <div ng-show="myForm.$invalid && myForm.$submitted"
+             class="alert alert-danger">
+                Invalid Inputs
+        </div>
+        <h2>Login</h2>
+        <form name="myForm" novalidate>
+                <input name="username"
+                       type="text"
+                       ng-model="username"
+                       class="form-control"
+                       placeholder="username"
+                        required
+                       autocapitalize="off"
+                       autocorrect="off"/>
+                <span ng-show="myForm.username.$invalid">
+                        Username Required
+                </span>
+                <input name="password"
+                       type="password"
+                       ng-model="password"
+                       class="form-control"
+                       placeholder="password"
+                       required/>
+                <span ng-show="myForm.password.$invalid">
+                        Password Required
+                </span>
+                <button type="submit"
+                        ng-click="model.login(username, password)"
+                   class="btn btn-primary btn-block">Login</button>
+        </form>
+
+        <a class="btn btn-success btn-block"
+           href="#/register">Register</a>
+
+        <a href="/auth/google" class="btn btn-info btn-block">
+                <span class="fa fa-google-plus"></span>
+                Google
+        </a>
+        <a href="/auth/facebook" class="btn btn-warning btn-block">
+                <span class="fa fa-facebook"></span>
+                Facebook
+        </a>
+</div>

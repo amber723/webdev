@@ -1,0 +1,20 @@
+<div ng-switch="model.widget.type">
+    <div ng-switch-when="HEADER">
+        <ng-include src="'views/widget/widget-heading.view.client.html'"></ng-include>
+    </div>
+    <div ng-switch-when="IMAGE">
+        <ng-include src="'views/widget/widget-image.view.client.html'"></ng-include>
+    </div>
+    <div ng-switch-when="YOUTUBE">
+        <ng-include src="'views/widget/widget-youtube.view.client.html'"></ng-include>
+    </div>
+    <div ng-switch-when="HTML">
+        <ng-include src="'views/widget/widget-html-edit.view.client.html'"></ng-include>
+    </div>
+    <div ng-switch-when="TEXT">
+        <ng-include src="'views/widget/widget-text.view.client.html'"></ng-include>
+    </div>
+    <div ng-switch-default>
+        <h1>Unable to edit this widget: {{model.widget.type}}</h1>
+    </div>
+</div>

@@ -1,0 +1,123 @@
+input.form-control {
+    margin-bottom: 5px;
+}
+
+body {
+    padding-top: 70px;
+    margin-bottom: 70px;
+}
+
+p.navbar-text.pull-right{
+    margin-right: 15px;
+}
+p.navbar-text.pull-left{
+    margin-left: 15px;
+}
+.jga-widget-tool{
+    position: absolute;
+    right: 15px;
+    background-color: white;
+    padding-top: 5px;
+    padding-right: 5px;
+    padding-left: 5px;
+    padding-bottom: 5px;
+    border-bottom-left-radius: 8px;
+    opacity: 0.8;
+}
+.navbar-default {
+    background-color: #337ab7;
+    border-color: #2e6da4;
+}
+.navbar-default .navbar-brand {
+    color: #f5f5f5;
+}
+.navbar-default .navbar-link {
+     color: #f5f5f5;
+ }
+
+/*++++++++++++++++++*/
+.navbar-default.jga {
+    background-color: #428bca;
+    color: #fff;
+}
+
+.navbar-default.jga a,
+.navbar-default.jga button,
+.navbar-default.jga a:hover {
+    color: #fff;
+}
+
+a {
+    cursor: pointer;
+}
+
+.jga-widget {
+    margin-bottom: 5px;
+}
+
+.jga-nowrap {
+    white-space:nowrap;
+}
+
+.jga-bg-highlight-on-hover:hover {
+    background-color: #f5f5f5;
+}
+
+.jga-highlight-on-hover:hover {
+    box-shadow: 0px 0px 1px #aaa;
+}
+
+.form-control, .btn {
+    margin-bottom: 5px;
+}
+
+.navbar-header .btn {
+    position: relative;
+    top: 10px;
+}
+
+.navbar-header .btn.pull-right {
+    position: relative;
+    right: 7px;
+}
+
+.navbar-header .btn.pull-left {
+    padding-right: 0px;
+}
+
+.btn-transparent,
+.btn-transparent:hover {
+    border-color: transparent;
+    background-color: transparent;
+}
+
+
+/*=====================================*/
+.glyphicon-user{
+    color: white;
+}
+a:hover {
+    text-decoration: none;
+}
+
+.youtube-widget {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 */
+    height: 0px;
+}
+.youtube-widget iframe {
+    position: absolute;
+    top: 0px;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/*=====================================*/
+
+.form-control.ng-valid {
+    border: solid 1px green;
+}
+.form-control.ng-invalid {
+    border: solid 1px red;
+}

@@ -1,0 +1,39 @@
+<div class="container">
+    <div ng-if="model.error"
+         class="alert alert-danger">
+        {{model.error}}
+    </div>
+    <div ng-show="myForm.$invalid && myForm.$submitted"
+         class="alert alert-danger">
+        Invalid Inputs
+    </div>
+    <h2>Register</h2>
+    <form name="myForm" novalidate>
+        <input name="username" type="text"
+               ng-model="model.user.username"
+               class="form-control"
+               placeholder="username"
+               required/>
+        <span ng-show="myForm.username.$invalid">
+                        Username Required
+        </span>
+        <input name="password" required
+                type="password" ng-model="model.user.password"
+               class="form-control" placeholder="password"/>
+        <span ng-show="myForm.password.$invalid">
+                        Password Required
+        </span>
+        <input required name="verifyPassword"
+                type="password" ng-model="verifyPassword"
+               class="form-control" placeholder="verify password"/>
+        <span ng-show="myForm.verifyPassword.$invalid">
+                        verifyPassword Required
+        </span>
+        <button ng-click="model.createUser(verifyPassword)"
+           type="submit"
+           class="btn btn-primary btn-block">Register</button>
+    </form>
+
+    <a class="btn btn-danger  btn-block"
+       href="#/login">Cancel</a>
+</div>
