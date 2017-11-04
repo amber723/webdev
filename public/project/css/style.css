@@ -4,9 +4,11 @@ body {
 
 #homepagebody{
     background-image: url(../img/homepage_bg.jpg);
-    width: 100%;
-    height: 710px;
-    background-size: cover;
+    background-color: black;
+    height: inherit;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
 }
 #homepagediv{
     width: 600px;
@@ -18,13 +20,6 @@ body {
 }
 
 
-/*============================= Studio Page =============================*/
-
-#studiobody{
-    background-image: url(../img/studio/grass_bg.png);
-    width: 100%;
-    height: 709px;
-}
 
 .card-columns {
     column-count: 4;
@@ -47,6 +42,9 @@ body {
     cursor: default;
     background-color: #5cb85c;
 }
+.navbar-nav>li>a{
+    line-height: 32px;
+}
 a {
     color: #5cb85c;
     text-decoration: none;
@@ -64,142 +62,14 @@ a:focus, a:hover {
      border-radius: .3rem;
 }
 
-/*============================= Studio Instruments Images Start =============================*/
-#girl{
-    position: absolute;
-    z-index: 10;
-    opacity: 0.8;
-    top: 200px;
-    right: 250px;
-    width: 80px;
-}
-
-#piano1{
-    position: absolute;
-    z-index: 8;
-    opacity: 0.8;
-    top: 400px;
-    right: 300px;
-    width: 150px;
-}
-#piano2{
-    position: absolute;
-    z-index: 8;
-    opacity: 0.8;
-    top: 300px;
-    right: 400px;
-    width: 150px;
-}
-#piano3{
-    position: absolute;
-    z-index: 7;
-    opacity: 0.8;
-    top: 400px;
-    right: 100px;
-    width: 200px;
-}
-
-#drum1{
-    position: absolute;
-    z-index: 9;
-    opacity: 0.8;
-    top: 85px;
-    width: 200px;
-    right: 0px;
-}
-#drum2{
-    position: absolute;
-    z-index: 7;
-    opacity: 0.8;
-    top: 200px;
-    width: 100px;
-    right: 400px;
-}
-
-#guitar1{
-    position: absolute;
-    z-index: 7;
-    opacity:0.8;
-    top: 165px;
-    width: 80px;
-    left: 230px;
-}
-#guitar2{
-    position: absolute;
-    z-index: 7;
-    opacity:0.8;
-    top: 130px;
-    width: 80px;
-    left: 310px;
-}
-
-#violin{
-     position: absolute;
-     z-index: 7;
-     opacity:0.8;
-     top: 400px;
-     width: 150px;
-     left: 50px;
- }
-
-#viola{
-    position: absolute;
-    z-index: 2;
-    opacity:0.8;
-    top: 80px;
-    width: 120px;
-    left: 100px;
-}
-
-#cello{
-    position: absolute;
-    z-index: 3;
-    opacity:0.8;
-    top: 80px;
-    width: 150px;
-    left: 200px;
-}
-
-#bass{
-    position: absolute;
-    z-index: 5;
-    opacity:0.8;
-    top: 220px;
-    width: 200px;
-    left: 400px;
-}
-
-#tuba{
-    position: absolute;
-    z-index: 5;
-    opacity:0.8;
-    top: 300px;
-    width: 120px;
-    left: 700px;
-}
-
-#cat{
-    position: absolute;
-    z-index: 5;
-    opacity:0.8;
-    bottom: 30px;
-    width: 100px;
-    right: 0px;
-}
-
-#piano1:hover, #piano2:hover, #piano3:hover, #drum1:hover, #drum2:hover, #girl:hover, #cat:hover, #guitar1:hover, #guitar2:hover,
-#bass:hover, #violin:hover, #viola:hover, #cello:hover, #tuba:hover
-{
-    opacity: 1;
-}
-
-/*============================= Studio Instruments Images End =============================*/
-
-
 
 .navbar-default .navbar-nav>li>a:focus, .navbar-default .navbar-nav>li>a:hover {
     color: #333;
     background-color: #e7e7e7;
+}
+
+.navbar-brand{
+    line-height: 1.85;
 }
 
 a:not([href]):not([tabindex]){
@@ -208,10 +78,7 @@ a:not([href]):not([tabindex]){
 .btn-group{
     margin-bottom: 10px;
 }
-/*.dropdown-menu {*/
-    /*min-width: 90px;*/
-    /*width: 92px;*/
-/*}*/
+
 .md-body-1 {
     font-size: 21px;
 }
@@ -239,4 +106,10 @@ md-slider .md-slider-wrapper {
     min-width: 50px;
     margin-left: 5px;
     margin-bottom: 5px;
+}
+
+#username:hover {
+    color: #fff;
+    background-color: #5cb85c;
+    border-color: #4cae4c;
 }

@@ -1,38 +1,39 @@
-<div class="col-sm-3" > </div>
-<div class="container col-sm-5">
-    <div ng-show="model.error" class="alert alert-danger">
-        {{model.error}}
+<div>
+    <div ng-show="vm.error" class="alert alert-danger">
+        {{vm.error}}
     </div>
+
     <h5>Name</h5>
-    <input ng-model="model.song.songName" type="text" required
+    <input ng-model="vm.song.songName" type="text" required
+           style="margin-left: 0px; margin-bottom: 10px;"
            class="form-control" placeholder="song name"/>
 
     <h5>Tonality</h5>
     <div class="btn-group">
         <label class="btn btn-outline-success"
-               ng-model="model.song.mode"
+               ng-model="vm.song.mode"
                uib-btn-radio="'Major'">Major Keys</label>
         <label class="btn btn-outline-success"
-               ng-model="model.song.mode"
+               ng-model="vm.song.mode"
                uib-btn-radio="'None'">None</label>
         <label class="btn btn-outline-success"
-               ng-model="model.song.mode"
+               ng-model="vm.song.mode"
                uib-btn-radio="'Minor'">Minor Keys</label>
     </div>
 
     <div class="btn-group" uib-dropdown >
         <button id="split-button" type="button"
-                class="btn btn-outline-warning">{{model.song.key}} Key</button>
+                class="btn btn-outline-warning">{{vm.song.key}} Key</button>
         <button type="button" class="btn btn-outline-warning" uib-dropdown-toggle>
         </button>
         <ul class="dropdown-menu" uib-dropdown-menu role="menu"
             aria-labelledby="split-button" >
-            <li ng-repeat="key in model.keys">
-                <a href="#" ng-click="$event.preventDefault(); model.song.key = key">{{ key }}</a>
+            <li ng-repeat="key in vm.keys">
+                <a href="#" ng-click="$event.preventDefault(); vm.song.key = key">{{ key }}</a>
             </li>
             <li class="divider"></li>
             <li role="menuitem">
-                <a href="#" ng-click="$event.preventDefault(); model.song.key = 'None'">None</a>
+                <a href="#" ng-click="$event.preventDefault(); vm.song.key = 'None'">None</a>
             </li>
         </ul>
     </div>
@@ -40,33 +41,25 @@
     <h5>Pitch</h5>
     <div class="btn-group">
         <label class="btn btn-outline-info"
-               ng-model="model.song.accidental"
+               ng-model="vm.song.accidental"
                uib-btn-radio="'Sharp'">Sharp #</label>
         <label class="btn btn-outline-info"
-               ng-model="model.song.accidental"
+               ng-model="vm.song.accidental"
                uib-btn-radio="'Natural'">Natural  Notes</label>
         <label class="btn btn-outline-info"
-               ng-model="model.song.accidental"
+               ng-model="vm.song.accidental"
                uib-btn-radio="'Flat'">Flat b</label>
     </div>
 
-    <div class="sliderdemoBasicUsage">
-        <md-content>
+    <h5>Tempo</h5>
+    <div class="sliderdemoBasicUsage" style="margin-bottom: 10px">
+        <md-content style=" padding-top: 20px; padding-left: 0px" >
             <div layout="">
-                <div flex="10" layout="" layout-align="center center">
-                    <span class="md-body-1">Tempo</span>
-                </div>
-                <md-slider flex="" md-discrete="" ng-model="model.song.tempo"
-                           step="1" min="40" max="200" aria-label="tempo">
+                <md-slider flex="" md-discrete="" ng-model="vm.song.tempo"
+                           step="1" min="40" max="200" aria-label="tempo" >
                 </md-slider>
             </div>
         </md-content>
     </div>
 
-    <button class="btn btn-outline-success " type="button"
-            ng-click="model.updateSong()">Save</button>
-    <button type="button" class="btn btn-outline-danger" >
-                <span ng-click="model.deleteSong()"
-                      class="glyphicon glyphicon-trash" aria-hidden="true"></span>
-    </button>
 </div>

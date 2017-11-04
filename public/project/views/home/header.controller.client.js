@@ -28,7 +28,7 @@
                     vm.user = response.data;
                     if(vm.user._id){
                         vm.visitor = false;
-                        $location.url("/user/" + vm.user._id + "/song");
+                        $location.url("/profile/" + vm.user._id);
                     }else{
                         vm.error = "User not found";
                         vm.addAlert();

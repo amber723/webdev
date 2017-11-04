@@ -43,7 +43,7 @@
             .when("/user/:uid/song/new",{
                 templateUrl: "views/studio/new-song.html",
                 controller: "NewSongController",
-                controllerAs: "model"
+                controllerAs: "vm"
             })
             .when("/user/:uid/song/:sid", {
                 templateUrl: "views/studio/song-edit.html",

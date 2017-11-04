@@ -15,7 +15,7 @@
                     vm.user = response.data;
                     if(vm.user._id){
                         $rootScope.$broadcast('someEvent', vm.user);
-                        $location.url("/profile/" + vm.user._id);
+                        $location.url("/user/" + vm.user._id + "/song");
                     }else{
                         vm.error = "User not found";
                     }

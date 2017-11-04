@@ -1,0 +1,34 @@
+#studiobody{
+    background-image: url(../img/studio/studio_bg.jpeg);
+    background-color: #e7f4e3;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    height: inherit;
+}
+
+#song-edit{
+    background-image: url(../img/studio/grass_bg.png);
+    background-size: cover;
+    height: inherit;
+}
+
+#wood-sign{
+    background-image: url(../img/studio/wood_sign.jpg);
+    top: 30px;
+    border-radius: 10px;
+    padding: 15px;
+    border-style: outset;
+    border-color: #c0a16b;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    z-index: 100;
+}
+
+#song-info-panel{
+    background-color: #e7f4e3;
+    top: 30px;
+    border-radius: 15px;
+    padding: 15px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    z-index: 100;
+}
