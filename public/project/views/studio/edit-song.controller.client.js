@@ -16,7 +16,6 @@
                 .findSongById(vm.songId)
                 .then(function (response) {
                     vm.song = response.data;
-                    console.log("song: "+vm.song.songName);
                 });
         }
         init();

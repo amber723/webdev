@@ -1,7 +1,17 @@
 <div id="song-edit">
     <div class="col-sm-4"></div>
-    <div id="wood-sign" class="container col-sm-4">
+    <div id="wood-sign" class="container col-sm-4" style="text-align: center">
         <h1 >{{model.song.songName}}</h1>
+
+        <a href="#/user/{{model.userId}}/song" class="btn btn-success col-sm-3"
+           style="margin: 0px; margin-left: 10px; float: right">
+            <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
+        </a>
+        <button type="button" class="btn btn-danger col-sm-3" ng-click="model.deleteSong()"
+                style="float: right; margin-left: 10px;">
+            <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+        </button>
+
 
         <div ng-controller="ModalDemoCtrl as vm" class="modal-demo">
             <script type="text/ng-template" id="myModalContent.html">
@@ -12,23 +22,19 @@
                     <div data-ng-include="'views/studio/song-info.html'"></div>
                 </div>
                 <div class="modal-footer">
-                    <button class="btn btn-primary" type="button" ng-click="vm.ok()">OK</button>
+                    <button class="btn btn-primary" type="button" ng-click="vm.updateSong()">OK</button>
                     <button class="btn btn-warning" type="button" ng-click="vm.cancel()">Cancel</button>
                 </div>
             </script>
 
-            <!--<a href="#/user/{{model.userId}}/song/{{model.songId}}/info">-->
-            <button type="button" class="btn btn-info col-sm-4" style="margin-right: 10px;"
-                    ng-click="vm.open()">
+
+            <button type="button" class="btn btn-info col-sm-3"
+                    ng-click="vm.open()" style="float: right">
                 <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
             </button>
-            <!--</a>-->
-
         </div>
 
-        <button type="button" class="btn btn-danger col-sm-4" ng-click="model.deleteSong()">
-                <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
-        </button>
+
     </div>
 
     <div data-ng-include="'views/studio/instruments.html'"></div>

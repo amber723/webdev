@@ -3,8 +3,7 @@
  */
 (function () {
     angular.module('projectApp')
-        .controller('ModalDemoCtrl',
-            function ($uibModal) {
+        .controller('ModalDemoCtrl', function ($uibModal) {
         var vm = this;
         vm.animationsEnabled = true;
 
@@ -22,11 +21,13 @@
 
 // Please note that $uibModalInstance represents a modal window (instance) dependency.
 // It is not the same as the $uibModal service used above.
-    angular.module('projectApp').controller('ModalInstanceCtrl', function ($uibModalInstance, $routeParams, SongService) {
+    angular.module('projectApp').controller('ModalInstanceCtrl', ModalInstanceCtrl);
+
+    function ModalInstanceCtrl($uibModalInstance, $routeParams, SongService) {
         var vm = this;
         vm.userId = $routeParams.uid;
         vm.songId = $routeParams.sid;
-
+        vm.updateSong = updateSong;
 
         vm.keys = ['A a', 'B b', 'C c', 'D d', 'E e', 'F f', 'G g'];
         function init() {
@@ -34,22 +35,25 @@
                 .findSongById(vm.songId)
                 .then(function (response) {
                     vm.song = response.data;
-                    console.log("song: "+vm.song.songName);
                 });
         }
         init();
 
-
-
-        // var vm = this;
-        vm.ok = function () {
+        function updateSong() {
+            SongService
+                .updateSong(vm.songId, vm.song)
+                .then(
+                    function (error) {
+                        vm.error = "Unable to update this song";
+                    });
             $uibModalInstance.close();
         };
+
 
         vm.cancel = function () {
             $uibModalInstance.dismiss('cancel');
         };
-    });
+    };
 
 // Please note that the close and dismiss bindings are from $uibModalInstance.
     angular.module('projectApp').component('modalComponent', {

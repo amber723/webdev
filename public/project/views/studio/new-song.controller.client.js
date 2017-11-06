@@ -11,7 +11,6 @@
         vm.createSong = createSong;
         vm.userId = $routeParams.uid;
         vm.songId = $routeParams.sid;
-        console.log(vm.songId);
         vm.keys = ['A a', 'B b', 'C c', 'D d', 'E e', 'F f', 'G g'];
         vm.song = {
             mode: 'None',

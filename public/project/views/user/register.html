@@ -3,19 +3,67 @@
         {{model.error}}
     </div>
     <h1>Sign Up</h1>
-    <input type="text" ng-model="model.user.email"
-           class="form-control" placeholder="email"/>
-    <input type="text" ng-model="model.user.username"
-           class="form-control" placeholder="username"/>
 
-    <input type="password" ng-model="model.user.password"
-           class="form-control" placeholder="password"/>
-    <input type="password" ng-model="verifyPassword"
-           class="form-control" placeholder="verify password"/>
+    <form name="form" novalidate class="row">
+        <div ng-class="{'has-success' : model.user.email}">
+            <input class="form-control" type="email"
+                   name="email" ng-model="model.user.email"
+                   placeholder="example@email.com" required>
+            <span class="error-span" ng-show="form.email.$touched && form.email.$invalid">
+                <span ng-show="form.email.$error.required">Email is required.</span>
+                <span ng-show="form.email.$error.email">Invalid email address.</span>
+            </span>
+        </div>
 
-    <a ng-click="model.createUser(verifyPassword)"
-       class="btn btn-info btn-block">Sign Up</a>
+        <div ng-class="{'has-success': model.user.username}">
+            <input class="form-control" type="text" name="username" ng-model="model.user.username"
+                   placeholder="Username can contain any letters or numbers, without spaces"
+                   required>
+            <span class="error-span" ng-show="form.username.$touched && form.username.$invalid">
+                <span ng-show="form.username.$error.required">Username is required.</span>
+            </span>
+        </div>
 
-    <a class="btn btn-danger  btn-block"
-       href="#/login">Cancel</a>
+        <div ng-class="{'has-success' : model.user.password && !form.password.$error.validpassword}">
+            <input class="form-control" type="password"
+                   name="password" ng-model="model.user.password"
+                   placeholder="Password should be at least 6 characters."
+                   required password-directive>
+            <span class="error-span" ng-show="form.password.$touched
+                && form.password.$error.required">
+                Password is required.
+            </span>
+            <span class="error-span"
+                  ng-show="!form.password.$error.required
+                  && form.password.$error.validpassword">
+                    Password should be at least 6 characters.
+            </span>
+        </div>
+
+        <div ng-class="{'has-success' : verifyPassword && !form.confirmpassword.$error.errorCompareTo}">
+            <input class="form-control" type="password"
+                   name="confirmpassword" ng-model="verifyPassword"
+                   placeholder="Please confirm password"
+                   compare-to="model.user.password" required>
+            <span class="error-span"
+                  ng-show="form.confirmpassword.$error.required && form.confirmpassword.$touched">
+                Enter your password again.</span>
+            <span class="error-span"
+                  ng-show="!form.confirmpassword.$error.required
+                  && form.confirmpassword.$error.errorCompareTo
+                  && form.password.$dirty">
+                Passwords do not match.</span>
+        </div>
+
+
+        <a ng-click="model.createUser(verifyPassword)"
+           ng-disabled="form.username.$invalid || form.email.$invalid
+			|| form.password.$error.required || form.password.$error.validpassword
+			|| form.confirmpassword.$error.required || form.confirmpassword.$error.errorCompareTo"
+           class="btn btn-info btn-block">Sign Up</a>
+
+        <a class="btn btn-danger btn-block"
+           href="#/login">Cancel</a>
+    </form>
+
 </div>

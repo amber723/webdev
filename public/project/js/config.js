@@ -50,11 +50,6 @@
                 controller: "EditSongController",
                 controllerAs: "model"
             })
-            .when("/user/:uid/song/:sid/info", {
-                templateUrl: "views/studio/song-info.html",
-                controller: "EditSongController",
-                controllerAs: "model"
-            })
             .when("/user/:uid/song/:sid/instrument/drum", {
                 templateUrl: "views/panel/drum-panel.html",
                 controller: "drumController",
