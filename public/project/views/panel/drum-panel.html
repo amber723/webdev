@@ -1,5 +1,3 @@
-
-
 <div class="container" style="margin: 10px;">
     <div class="row">
         <div class="col-sm-2">
@@ -79,8 +77,8 @@
                 <span class="md-body-1">Tempo</span>
             </div>
             <md-slider flex="" md-discrete="" ng-model="model.tempo"
-                       style="margin-top: 50px;"
-                       id="tempo" step="1" min="20" max="160" aria-label="tempo">
+                       style="margin-top: 50px;" id="tempo" step="1"
+                       min="20" max="160" aria-label="tempo">
             </md-slider>
         </div>
     </md-content>
@@ -94,9 +92,7 @@
     <button class="btn btn-outline-success " style="margin-left: 15px"
             ng-click="model.updatePiece()"> Save </button>
 
-    <a class="btn btn-outline-warning"
-       href="#/user/{{model.userId}}/song/{{model.songId}}"
-       style="margin-left: 15px"> Cancel </a>
-
+    <a class="btn btn-outline-warning" style="margin-left: 15px"
+       href="#/user/{{model.userId}}/song/{{model.songId}}"> Cancel </a>
 
 </div>

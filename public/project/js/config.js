@@ -60,7 +60,6 @@
                 controller: "panelController",
                 controllerAs: "model"
             })
-
             .when("/courseList", {
                 templateUrl: "views/course/course-list.html"
             })

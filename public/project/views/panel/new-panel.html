@@ -16,16 +16,21 @@
     </md-content>
 </div>
 
+
+
 <button class="btn btn-outline-info" style="margin-left: 15px"
         ng-click="model.playAllnotes(model.sliders)"> Play </button>
 <button class="btn btn-outline-success " style="margin-left: 15px"
         ng-click="model.updatePiece()"> Save </button>
-<a class="btn btn-outline-warning" href="#/user/{{model.userId}}/song/{{model.songId}}"
-        style="margin-left: 15px"> Cancel </a>
+<a class="btn btn-outline-warning" style="margin-left: 15px"
+   href="#/user/{{model.userId}}/song/{{model.songId}}"> Cancel </a>
 <button class="btn btn-outline-danger" style="margin-left: 15px"
         ng-click="model.deletePiece()"> Delete </button>
 
 <button class="btn btn-warning" style="margin-left: 15px"
-        ng-click="model.playSong()">Play</button>
+        ng-click="model.playSong()">Play All</button>
 
 
+<div ng-show="vm.error" class="alert alert-danger">
+    {{vm.error}}
+</div>

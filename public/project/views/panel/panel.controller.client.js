@@ -6,8 +6,7 @@
         .module("projectApp")
         .controller("panelController", panelController);
 
-    function panelController(ngAudio, $interval, $routeParams,
-                             $location, PieceService) {
+    function panelController(ngAudio, $interval, $routeParams, $location, PieceService) {
         var vm = this;
         vm.getAudio = getAudio;
         vm.playAllnotes = playAllnotes;
@@ -17,7 +16,7 @@
         vm.songId = $routeParams.sid;
         vm.instrumentType = $routeParams.instrumentType;
 
-        vm.sliders =  [ 0, 0, 49, 52, 54, 0, 61, 0, 59, 57, 56, 57, 0, 0, 0, 0 ];
+        vm.sliders =  [ 50, 52, 54, 55, 57, 59, 61, 62, 62, 61, 59, 57, 55, 54, 52, 50];
 
         function init() {
             PieceService
@@ -37,6 +36,7 @@
         }
         init();
 
+        //TODO:
         function playSong() {
             for (var i = 0; i < vm.pieces.length; i++) {
                 playAllnotes(vm.pieces[i].arr);
@@ -54,8 +54,7 @@
                     vm.getAudio(arr[i]).play();
                     i++;
                 }
-            }, 1000, arr.length, i);
-
+            }, 500, arr.length, i);
         }
 
         function updatePiece() {

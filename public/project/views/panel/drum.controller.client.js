@@ -19,7 +19,7 @@
         vm.playButton = "Play";
 
         var isPlaying = false;
-        vm.tempo = 120.0;
+        vm.tempo = 40.0;
         var audioContext = new AudioContext();
         var currentBeat = 1;
         var futureTickTime = audioContext.currentTime;
@@ -48,16 +48,15 @@
 
         function checkIfRecordedAndPlay(trackArray, sndToPlay, gridBeat, timeVal) {
             if(1 === trackArray[gridBeat - 1]){
-                    sndToPlay.play(timeVal);
+                sndToPlay.play(timeVal);
             }
         }
 
         function checkPianoAndPlay(trackArray, gridBeat, timeVal) {
-            if(vm.getAudio(trackArray[gridBeat - 1]) !== null){
-                    vm.getAudio(trackArray[gridBeat - 1]).play(timeVal);
-            }
+            if(vm.getAudio(trackArray[gridBeat - 1]) !== null)
+                vm.getAudio(trackArray[gridBeat - 1]).play(timeVal);
         }
-        
+
         function scheduleNote(beatDivisionNumber, time) {
             $("#metro-ui-" + (beatDivisionNumber)).effect("pulsate",{
                 times:1
@@ -69,7 +68,8 @@
             checkIfRecordedAndPlay(vm.track4, vm.cowBell, beatDivisionNumber, time);
 
             for (var i = 0; i < vm.pieces.length; i++) {
-                checkPianoAndPlay(vm.pieces[i].arr, beatDivisionNumber, time);
+                if (vm.pieces[i].instrumentType != "drum")
+                    checkPianoAndPlay(vm.pieces[i].arr, beatDivisionNumber, time);
             }
         }
 
@@ -158,12 +158,10 @@
         }
 
         function updatePiece() {
-            console.log("update piece");
             PieceService
                 .findPieceByInstrumentType( vm.songId, vm.instrumentType)
                 .then(function (response) {
                     if(response.data._id){
-                        console.log("update piece");
                         PieceService
                             .updatePiece(vm.songId, vm.arr, vm.instrumentType)
                             .then(
@@ -174,7 +172,6 @@
                                     vm.error = "Failed to Save the music piece";
                                 });
                     }else{
-                        console.log("create piece");
                         PieceService
                             .createPiece(vm.songId, vm.arr, vm.instrumentType)
                             .then(
