@@ -1,7 +1,8 @@
 <div ng-cloak="" class="sliderdemoVertical">
-    <md-content layout="row" layout-padding="" style="height: 400px">
+    <md-content layout="row" layout-padding="" style="height: 300px;">
 
-        <md-slider-container ng-repeat="(i, value) in model.sliders track by $index">
+        <md-slider-container ng-repeat="(i, value) in model.sliders track by $index"
+        style = "padding: 0;">
             <md-slider md-vertical=""  flex="" min="0" max="88"
                        ng-click="model.getAudio(value).play()"
                        ng-model="model.sliders[i]" aria-label="red" id="red-slider">
@@ -16,7 +17,8 @@
     </md-content>
 </div>
 
-
+<iframe src="http://www.musictheory.net/piano"
+        frameborder="0" style="width: 100%; height: 231px; margin-bottom: 15px;" scrolling="no"></iframe>
 
 <button class="btn btn-outline-info" style="margin-left: 15px"
         ng-click="model.playAllnotes(model.sliders)"> Play </button>
