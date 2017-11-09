@@ -97,6 +97,13 @@
     width: 230px;
 }
 
+#xylophone1{
+    position: absolute;
+    z-index: 7;
+    opacity: 0.8;
+    top: 500px;
+    right: 200px;
+}
 
 #tuba{
     position: absolute;
@@ -115,7 +122,7 @@
     right: 0px;
 }
 
-#piano1:hover, #piano2:hover, #piano3:hover, #drum1:hover, #drum2:hover,
+#piano1:hover, #piano2:hover, #piano3:hover, #xylophone1:hover, #drum1:hover, #drum2:hover,
 #girl:hover, #cat:hover, #guitar1:hover, #guitar2:hover,
 #bass:hover, #violin:hover, #viola:hover, #cello:hover, #tuba:hover
 {

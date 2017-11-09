@@ -2,6 +2,7 @@
  * Created by xinshu on 9/28/16.
  */
 (function () {
+
     angular
         .module("projectApp")
         .config(Config);
@@ -35,6 +36,8 @@
                 controller: "SearchSongController",
                 controllerAs: "model"
             })
+
+            // Studio Config
             .when("/user/:uid/song",{
                 templateUrl: "views/user/song-list.html",
                 controller: "SongListController",
@@ -55,13 +58,26 @@
                 controller: "drumController",
                 controllerAs: "model"
             })
-            .when("/user/:uid/song/:sid/instrument/:instrumentType", {
-                templateUrl: "views/panel/new-panel.html",
+            .when("/user/:uid/song/:sid/instrument/bass", {
+                templateUrl: "views/panel/bass-panel.html"
+            })
+            .when("/user/:uid/song/:sid/instrument/xylophone", {
+                templateUrl: "views/panel/xylophone-panel.html"
+                // controller: "xylophoneController",
+                // controllerAs: "model"
+            })
+            .when("/user/:uid/song/:sid/instrument/piano", {
+                templateUrl: "views/panel/piano-panel.html",
                 controller: "panelController",
                 controllerAs: "model"
             })
+
+            // Course Config
             .when("/courseList", {
                 templateUrl: "views/course/course-list.html"
+            })
+            .when("/featuredCourse", {
+                templateUrl: "views/course/featured-course.html"
             })
             .when("/mycourse", {
                 templateUrl: "views/course/my-course.html"
