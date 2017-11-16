@@ -143,15 +143,30 @@
         mediaRecorder.onstop = function(evt) {
             // Make blob out of our blobs, and open it.
             var blob = new Blob(chunks, { 'type' : 'audio/ogg; codecs=opus' });
-            var url = URL.createObjectURL(blob);
+            SC.initialize({
+                client_id: '2876adf40e30f73eb3cfe0af77f3a77d',
+                redirect_uri: 'https://soundcloud.com/user-340614115-425226027'
+            });
+            SC.connect().then(function() {
+                SC.put('/me', {
+                    user: { description: 'I am using the SoundCloud API! --Amber' }
+
+                });
+            });
+            SC.upload({
+                file: blob, // a Blob of your WAV, MP3...
+                title: 'blob1'
+            });
+
+            vm.url = URL.createObjectURL(blob);
 
             var li = document.createElement('li');
             var au = document.createElement('audio');
             var hf = document.createElement('a');
 
             au.controls = true;
-            au.src = url;
-            hf.href = url;
+            au.src = vm.url;
+            hf.href = vm.url;
             hf.download = new Date().toISOString() + '.ogg';
             hf.innerHTML = hf.download;
             li.appendChild(au);
@@ -160,6 +175,12 @@
         };
 
 //===================================================================================
+
+        function getSafeUrl(url) {
+            return $sce.trustAsResourceUrl(url);
+        }
+
+
 
         function init() {
             PieceService

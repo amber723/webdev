@@ -4,7 +4,7 @@
 (function () {
     angular
         .module("projectApp")
-        .controller("panelController", panelController);
+        .controller("pianoController", panelController);
 
     function panelController(ngAudio, $interval, $routeParams, $location, PieceService) {
         var vm = this;

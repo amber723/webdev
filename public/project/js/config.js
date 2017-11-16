@@ -68,7 +68,7 @@
             })
             .when("/user/:uid/song/:sid/instrument/piano", {
                 templateUrl: "views/panel/piano-panel.html",
-                controller: "panelController",
+                controller: "pianoController",
                 controllerAs: "model"
             })
 
