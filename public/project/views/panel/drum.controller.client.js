@@ -88,9 +88,14 @@
                 futureTickTime = audioContext.currentTime;
                 scheduler();
                 vm.playButton = "Stop";
+
+                mediaRecorder.start();
+
             }else{
                 window.clearTimeout(timerID);
                 vm.playButton =  "Play!";
+
+                mediaRecorder.stop();
             }
         }
 
@@ -112,19 +117,47 @@
                 audioContext.decodeAudioData(getSound.response, function (buffer) {
                     soundObj.soundToPlay = buffer;
                 })
-            }
+            };
 
             getSound.send();
 
             soundObj.play = function () {
                 var playSound = audioContext.createBufferSource();
                 playSound.buffer = soundObj.soundToPlay;
-                playSound.connect(audioContext.destination)
-                playSound.start(audioContext.currentTime)
-            }
-
+                playSound.connect(audioContext.destination);
+                playSound.connect(dest);
+                playSound.start(audioContext.currentTime);
+            };
             return soundObj;
         }
+
+        var chunks = [];
+        var dest = audioContext.createMediaStreamDestination();
+        var mediaRecorder = new MediaRecorder(dest.stream);
+
+        mediaRecorder.ondataavailable = function(evt) {
+            // push each chunk (blobs) in an array
+            chunks.push(evt.data);
+        };
+
+        mediaRecorder.onstop = function(evt) {
+            // Make blob out of our blobs, and open it.
+            var blob = new Blob(chunks, { 'type' : 'audio/ogg; codecs=opus' });
+            var url = URL.createObjectURL(blob);
+
+            var li = document.createElement('li');
+            var au = document.createElement('audio');
+            var hf = document.createElement('a');
+
+            au.controls = true;
+            au.src = url;
+            hf.href = url;
+            hf.download = new Date().toISOString() + '.ogg';
+            hf.innerHTML = hf.download;
+            li.appendChild(au);
+            li.appendChild(hf);
+            recordingslist.appendChild(li);
+        };
 
 //===================================================================================
 
@@ -149,7 +182,6 @@
                     vm.pieces.splice(0, 1);
                     console.log(vm.pieces);
                 });
-
         }
         init();
 
@@ -281,3 +313,8 @@
             ];
     }
 })();
+
+
+
+
+
