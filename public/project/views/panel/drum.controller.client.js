@@ -161,12 +161,6 @@
 
 //===================================================================================
 
-        function getSafeUrl(url) {
-            return $sce.trustAsResourceUrl(url);
-        }
-
-
-
         function init() {
             PieceService
                 .findPieceByInstrumentType(vm.songId, vm.instrumentType)
