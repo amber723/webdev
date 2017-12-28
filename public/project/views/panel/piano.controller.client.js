@@ -4,19 +4,74 @@
 (function () {
     angular
         .module("projectApp")
-        .controller("pianoController", panelController);
+        .controller("pianoController", pianoController);
 
-    function panelController(ngAudio, $interval, $routeParams, $location, PieceService) {
+    function pianoController(ngAudio, $routeParams, $location, PieceService) {
         var vm = this;
         vm.getAudio = getAudio;
-        vm.playAllnotes = playAllnotes;
-        vm.playSong = playSong;
+        vm.play = play;
+        vm.save = save;
+        vm.cancel = cancel;
+
         vm.updatePiece = updatePiece;
         vm.userId = $routeParams.uid;
         vm.songId = $routeParams.sid;
-        vm.instrumentType = $routeParams.instrumentType;
+        vm.instrumentType = "piano";
+        vm.playButton = "Play";
+
+
+        var isPlaying = false;
+        vm.tempo = 40.0;
+        var audioContext = new AudioContext();
+        var currentBeat = 1;
+        var futureTickTime = audioContext.currentTime;
+        var timerID = 0;
 
         vm.sliders =  [ 50, 52, 54, 55, 57, 59, 61, 62, 62, 61, 59, 57, 55, 54, 52, 50];
+
+        function futureTick() {
+            var secondsPerBeat = 60.0/vm.tempo;
+            futureTickTime += 0.25 * secondsPerBeat;
+            currentBeat++;
+            if(currentBeat > 16){
+                currentBeat = 1;
+            }
+        }
+
+        function checkPianoAndPlay(trackArray, gridBeat, timeVal) {
+            if(vm.getAudio(trackArray[gridBeat - 1]) !== null)
+                vm.getAudio(trackArray[gridBeat - 1]).play(timeVal);
+        }
+
+        function scheduleNote(beatDivisionNumber, time) {
+            for (var i = 0; i < vm.pieces.length; i++) {
+                if (vm.pieces[i].instrumentType === "piano")
+                    checkPianoAndPlay(vm.pieces[i].arr, beatDivisionNumber, time);
+            }
+        }
+
+        function scheduler() {
+            while(futureTickTime < audioContext.currentTime + 0.1){
+                scheduleNote(currentBeat, futureTickTime);
+                futureTick();
+            }
+            timerID = window.setTimeout(scheduler, 50.0)
+        }
+
+        function play() {
+            isPlaying = !isPlaying;
+            if(isPlaying){
+                currentBeat = 1;
+                futureTickTime = audioContext.currentTime;
+                scheduler();
+                vm.playButton = "Stop";
+            }else{
+                window.clearTimeout(timerID);
+                vm.playButton =  "Play!";
+            }
+        }
+
+//===================================================================================
 
         function init() {
             PieceService
@@ -36,25 +91,23 @@
         }
         init();
 
-        //TODO:
-        function playSong() {
-            for (var i = 0; i < vm.pieces.length; i++) {
-                playAllnotes(vm.pieces[i].arr);
-            }
-        }
-
         function getAudio(val) {
             return vm.notes[val].audio;
         }
 
-        function playAllnotes(arr) {
-            var i = 0;
-            $interval(function () {
-                if(vm.getAudio(arr[i]) !== null){
-                    vm.getAudio(arr[i]).play();
-                    i++;
-                }
-            }, 500, arr.length, i);
+        function cancel() {
+            isPlaying = !isPlaying;
+            if(isPlaying){
+                isPlaying = !isPlaying;
+            }else{
+                window.clearTimeout(timerID);
+                vm.playButton =  "Play!";
+            }
+        }
+
+        function save() {
+            cancel();
+            updatePiece();
         }
 
         function updatePiece() {
@@ -76,13 +129,15 @@
                             .createPiece(vm.songId, vm.sliders, vm.instrumentType)
                             .then(
                                 function (response) {
-                                var newPiece = response.data;
-                                if(newPiece._id){
-                                    $location.url("/user/"+ vm.userId +"/song/"+ vm.songId);
-                                }else{
+                                    var newPiece = response.data;
+                                    if(newPiece._id){
+                                        $location.url("/user/"+ vm.userId +"/song/"+ vm.songId);
+                                    }else{
+                                        vm.error = "Failed to Create the music piece";
+                                    }
+                                }, function (error) {
                                     vm.error = "Failed to Create the music piece";
-                                }
-                            });
+                                });
                     }
                 });
         }

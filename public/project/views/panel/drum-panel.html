@@ -68,7 +68,6 @@
 
 </div>
 
-
 <div class="sliderdemoBasicUsage col-sm-8" >
     <md-content>
         <div layout="">
@@ -90,13 +89,10 @@
          ng-click="model.play()">{{model.playButton}}</div>
 
     <button class="btn btn-outline-success " style="margin-left: 15px"
-            ng-click="model.updatePiece()"> Save </button>
+            ng-click="model.save()"> Save </button>
 
     <a class="btn btn-outline-warning" style="margin-left: 15px"
-       href="#/user/{{model.userId}}/song/{{model.songId}}"> Cancel </a>
+       href="#/user/{{model.userId}}/song/{{model.songId}}"
+       ng-click="model.cancel()"> Cancel </a>
 
 </div>
-
-<ul id="recordingslist"  style=" display: block; margin-bottom: 10px;"></ul>
-<a class="btn btn-outline-info" href="https://cloudconvert.com/ogg-to-mp3"
-   target="_blank">convert .ogg file to mp3/wav/etc</a>

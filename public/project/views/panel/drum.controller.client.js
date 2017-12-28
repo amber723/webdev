@@ -8,15 +8,18 @@
 
     function drumController($location, $routeParams, PieceService) {
         var vm = this;
-        vm.play = play;
-        vm.drumPadAction = drumPadAction;
         vm.getAudio = getAudio;
-        vm.updatePiece = updatePiece;
+        vm.play = play;
+        vm.save = save;
+        vm.cancel = cancel;
 
+        vm.updatePiece = updatePiece;
         vm.userId = $routeParams.uid;
         vm.songId = $routeParams.sid;
         vm.instrumentType = "drum";
         vm.playButton = "Play";
+
+        vm.drumPadAction = drumPadAction;
 
         var isPlaying = false;
         vm.tempo = 40.0;
@@ -68,7 +71,7 @@
             checkIfRecordedAndPlay(vm.track4, vm.cowBell, beatDivisionNumber, time);
 
             for (var i = 0; i < vm.pieces.length; i++) {
-                if (vm.pieces[i].instrumentType != "drum")
+                if (vm.pieces[i].instrumentType === "piano")
                     checkPianoAndPlay(vm.pieces[i].arr, beatDivisionNumber, time);
             }
         }
@@ -89,13 +92,9 @@
                 scheduler();
                 vm.playButton = "Stop";
 
-                mediaRecorder.start();
-
             }else{
                 window.clearTimeout(timerID);
                 vm.playButton =  "Play!";
-
-                mediaRecorder.stop();
             }
         }
 
@@ -125,39 +124,11 @@
                 var playSound = audioContext.createBufferSource();
                 playSound.buffer = soundObj.soundToPlay;
                 playSound.connect(audioContext.destination);
-                playSound.connect(dest);
+                // playSound.connect(dest);
                 playSound.start(audioContext.currentTime);
             };
             return soundObj;
         }
-
-        var chunks = [];
-        var dest = audioContext.createMediaStreamDestination();
-        var mediaRecorder = new MediaRecorder(dest.stream);
-
-        mediaRecorder.ondataavailable = function(evt) {
-            // push each chunk (blobs) in an array
-            chunks.push(evt.data);
-        };
-
-        mediaRecorder.onstop = function(evt) {
-            // Make blob out of our blobs, and open it.
-            var blob = new Blob(chunks, { 'type' : 'audio/ogg; codecs=opus' });
-            vm.url = URL.createObjectURL(blob);
-
-            var li = document.createElement('li');
-            var au = document.createElement('audio');
-            var hf = document.createElement('a');
-
-            au.controls = true;
-            au.src = vm.url;
-            hf.href = vm.url;
-            hf.download = new Date().toISOString() + '.ogg';
-            hf.innerHTML = hf.download;
-            li.appendChild(au);
-            li.appendChild(hf);
-            recordingslist.appendChild(li);
-        };
 
 //===================================================================================
 
@@ -179,7 +150,7 @@
                 .findPiecesBySongId(vm.songId)
                 .then(function (response) {
                     vm.pieces = response.data;
-                    vm.pieces.splice(0, 1);
+                    // vm.pieces.splice(0, 1);
                     console.log(vm.pieces);
                 });
         }
@@ -187,6 +158,21 @@
 
         function getAudio(val) {
             return vm.notes[val].audio;
+        }
+
+        function cancel() {
+            isPlaying = !isPlaying;
+            if(isPlaying){
+                isPlaying = !isPlaying;
+            }else{
+                window.clearTimeout(timerID);
+                vm.playButton =  "Play!";
+            }
+        }
+
+        function save() {
+            cancel();
+            updatePiece();
         }
 
         function updatePiece() {
