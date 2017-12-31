@@ -1,16 +1,19 @@
 <div id="song-edit">
+
     <div class="col-sm-4"></div>
     <div id="wood-sign" class="container col-sm-4" style="text-align: center">
         <h1 >{{model.song.songName}}</h1>
-
-        <a href="#/user/{{model.userId}}/song" class="btn btn-success col-sm-3"
-           style="margin: 0px; margin-left: 10px; float: right">
-            <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
-        </a>
-        <button type="button" class="btn btn-danger col-sm-3" ng-click="model.deleteSong()"
+        <button type="button" class="btn btn-outline-danger col-sm-3"
+                ng-click="model.deleteSong()"
                 style="float: right; margin-left: 10px;">
             <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
         </button>
+
+        <a href="#/user/{{model.userId}}/song" class="btn btn-outline-success col-sm-3"
+           style="margin: 0px; margin-left: 10px; float: right">
+            <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
+        </a>
+
 
 
         <div ng-controller="ModalDemoCtrl as vm" class="modal-demo">
@@ -22,13 +25,13 @@
                     <div data-ng-include="'views/studio/song-info.html'"></div>
                 </div>
                 <div class="modal-footer">
-                    <button class="btn btn-primary" type="button" ng-click="vm.updateSong()">OK</button>
-                    <button class="btn btn-warning" type="button" ng-click="vm.cancel()">Cancel</button>
+                    <button class="btn btn-outline-primary" type="button" ng-click="vm.updateSong()">OK</button>
+                    <button class="btn btn-outline-warning" type="button" ng-click="vm.cancel()">Cancel</button>
                 </div>
             </script>
 
 
-            <button type="button" class="btn btn-info col-sm-3"
+            <button type="button" class="btn btn-outline-success col-sm-3"
                     ng-click="vm.open()" style="float: right">
                 <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
             </button>
@@ -38,6 +41,26 @@
     </div>
 
     <div data-ng-include="'views/studio/instruments.html'"></div>
+
+    <div class="row" style="padding-top: 520px; width: 100%;">
+        <div style="background-color: black; padding-left: 30px; padding-bottom: 10px;
+            padding-top: 10px;">
+            <div class="btn btn-outline-danger"
+                 ng-click="model.play()">{{model.playButton}}</div>
+
+            <div id="record" class="col-sm-10" style="float:right"></div>
+        </div>
+
+        <!--<a class="btn btn-outline-info" href="https://cloudconvert.com/ogg-to-mp3"-->
+        <!--target="_blank">convert .ogg file to mp3/wav/etc</a>-->
+
+        <!--<button class="btn btn-primary" onclick="wavesurfer.playPause()">-->
+            <!--<i class="glyphicon glyphicon-play"></i>-->
+        <!--</button>-->
+        <!--<div id="waveform"></div>-->
+
+    </div>
+
 </div>
 
 
@@ -47,30 +70,3 @@
 <!--</iframe>-->
 
 
-<div class="container" >
-    <div class="btn btn-danger"
-         ng-click="model.play()">{{model.playButton}}</div>
-
-    <button class="btn btn-outline-success " style="margin-left: 15px"
-            ng-click="model.save()"> Save </button>
-
-    <a class="btn btn-outline-warning" style="margin-left: 15px"
-       href="#/user/{{model.userId}}/song/{{model.songId}}"
-       ng-click="model.cancel()"> Cancel </a>
-
-</div>
-
-
-
-<ul id="recordingslist"  style=" display: block; margin-bottom: 10px;"></ul>
-<!--<a class="btn btn-outline-info" href="https://cloudconvert.com/ogg-to-mp3"-->
-<!--target="_blank">convert .ogg file to mp3/wav/etc</a>-->
-
-
-<div id="waveform"></div>
-<p align="center">
-    <button class="btn btn-primary" onclick="wavesurfer.playPause()">
-        <i class="glyphicon glyphicon-play"></i>
-        Play
-    </button>
-</p>

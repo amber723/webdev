@@ -14,9 +14,7 @@
 
         vm.getAudio = getAudio;
         vm.play = play;
-        vm.save = save;
-        vm.cancel = cancel;
-        vm.playButton = "Play";
+        vm.playButton = "Start Recording...";
 
         var isPlaying = false;
         vm.tempo = 40.0;
@@ -88,13 +86,13 @@
                 currentBeat = 1;
                 futureTickTime = audioContext.currentTime;
                 scheduler();
-                vm.playButton = "Stop";
+                vm.playButton = "Stop Recording...";
 
                 mediaRecorder.start();
 
             }else{
                 window.clearTimeout(timerID);
-                vm.playButton =  "Play!";
+                vm.playButton =  "Record Again!";
 
                 mediaRecorder.stop();
             }
@@ -148,43 +146,30 @@
             au.controls = true;
             au.src = vm.url;
             hf.href = vm.url;
-            hf.download = new Date().toISOString() + '.ogg';
+            // hf.download = new Date().toISOString() + '.ogg';
+            hf.download = 'download.ogg';
             hf.innerHTML = hf.download;
             li.appendChild(au);
             li.appendChild(hf);
-            recordingslist.appendChild(li);
+
+            if (record.childNodes.length >= 1)
+                record.removeChild(record.childNodes[0]);
+            record.appendChild(li);
         };
 
-        var wavesurfer = WaveSurfer.create({
-            container: '#waveform',
-            waveColor: 'darkorange',
-            progressColor: 'purple',
-            splitChannels: true,
-            height: 64
-        });
-        wavesurfer.load('/project/sounds/drum/cowBell.mp3');
+        // var wavesurfer = WaveSurfer.create({
+        //     container: '#waveform',
+        //     waveColor: 'darkorange',
+        //     progressColor: 'purple',
+        //     splitChannels: true,
+        //     height: 64
+        // });
+        // wavesurfer.load("/project/sounds/drum/cowBell.mp3");
 
         //=====================================================================
 
         function getAudio(val) {
             return vm.notes[val].audio;
-        }
-
-        function cancel() {
-            isPlaying = !isPlaying;
-            if(isPlaying){
-                isPlaying = !isPlaying;
-            }else{
-                window.clearTimeout(timerID);
-                vm.playButton =  "Play!";
-
-                mediaRecorder.stop();
-            }
-        }
-
-        function save() {
-            cancel();
-            updatePiece();
         }
 
 // End of PlayAll =============================================================
@@ -198,11 +183,12 @@
                     vm.song = response.data;
                 });
 
+            //TODO: init pieces
             PieceService
                 .findPieceByInstrumentType(vm.songId, vm.instrumentType)
                 .then(function (response) {
                     if(response.data._id){
-                        console.log(vm.arr);
+                        console.log("drum: "+ vm.arr);
                         vm.piece = response.data;
                         vm.arr = vm.piece.arr;
                         vm.track1 = vm.arr[0];
@@ -215,8 +201,7 @@
                 .findPiecesBySongId(vm.songId)
                 .then(function (response) {
                     vm.pieces = response.data;
-                    // vm.pieces.splice(0, 1);
-                    console.log(vm.pieces);
+                    console.log("instuments: "+ vm.pieces);
                 });
         }
         init();

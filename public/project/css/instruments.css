@@ -116,14 +116,14 @@
 #cat{
     position: absolute;
     z-index: 5;
-    opacity:0.8;
+    opacity:1;
     bottom: 30px;
     width: 100px;
     right: 0px;
 }
 
 #piano1:hover, #piano2:hover, #piano3:hover, #xylophone1:hover, #drum1:hover, #drum2:hover,
-#girl:hover, #cat:hover, #guitar1:hover, #guitar2:hover,
+#girl:hover, #guitar1:hover, #guitar2:hover,
 #bass:hover, #violin:hover, #viola:hover, #cello:hover, #tuba:hover
 {
     opacity: 1;

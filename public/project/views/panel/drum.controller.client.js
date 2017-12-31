@@ -55,11 +55,6 @@
             }
         }
 
-        function checkPianoAndPlay(trackArray, gridBeat, timeVal) {
-            if(vm.getAudio(trackArray[gridBeat - 1]) !== null)
-                vm.getAudio(trackArray[gridBeat - 1]).play(timeVal);
-        }
-
         function scheduleNote(beatDivisionNumber, time) {
             $("#metro-ui-" + (beatDivisionNumber)).effect("pulsate",{
                 times:1
@@ -69,11 +64,6 @@
             checkIfRecordedAndPlay(vm.track2, vm.snare, beatDivisionNumber, time);
             checkIfRecordedAndPlay(vm.track3, vm.hihat, beatDivisionNumber, time);
             checkIfRecordedAndPlay(vm.track4, vm.cowBell, beatDivisionNumber, time);
-
-            for (var i = 0; i < vm.pieces.length; i++) {
-                if (vm.pieces[i].instrumentType === "piano")
-                    checkPianoAndPlay(vm.pieces[i].arr, beatDivisionNumber, time);
-            }
         }
 
         function scheduler() {
@@ -145,13 +135,6 @@
                         vm.track3 = vm.arr[2];
                         vm.track4 = vm.arr[3];
                     }
-                });
-            PieceService
-                .findPiecesBySongId(vm.songId)
-                .then(function (response) {
-                    vm.pieces = response.data;
-                    // vm.pieces.splice(0, 1);
-                    console.log(vm.pieces);
                 });
         }
         init();

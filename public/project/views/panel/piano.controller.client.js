@@ -82,12 +82,6 @@
                         vm.sliders = vm.piece.arr;
                     }
                 });
-            PieceService
-                .findPiecesBySongId(vm.songId)
-                .then(function (response) {
-                    vm.pieces = response.data;
-                });
-
         }
         init();
 

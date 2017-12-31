@@ -14,12 +14,13 @@
 }
 
 #wood-sign{
-    background-image: url(../img/studio/wood_sign.jpg);
+    /*background-image: url(../img/studio/wood_sign.jpg);*/
+    background-color: black;
     top: 30px;
     border-radius: 10px;
     padding: 15px;
     border-style: outset;
-    border-color: #c0a16b;
+    border-color: snow;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     z-index: 100;
 }
